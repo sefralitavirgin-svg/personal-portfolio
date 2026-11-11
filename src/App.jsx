@@ -4,23 +4,22 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
 
 import ScrollToTop from "./components/ScrollToTop";
-
-import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
+import HandGesture from "./components/HandGesture";
 
 function App() {
   return (
     <LanguageProvider>
       <ThemeProvider>
         <BrowserRouter>
-
           <ScrollToTop />
 
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
 
+          <HandGesture />
         </BrowserRouter>
       </ThemeProvider>
     </LanguageProvider>

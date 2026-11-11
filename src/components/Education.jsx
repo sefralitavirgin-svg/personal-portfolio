@@ -1,24 +1,33 @@
-import education from "../data/education";
-import useLanguage from "../hooks/useLanguage";
+const education = [
+  {
+    id: 1,
+    school: "STMIK Multicom Kotamobagu",
+    degree: "Bachelor of Computer Science",
+    period: "2024 - Present",
+    description: "Focused on software development, databases, web technologies, and the practical application of problem-solving strategies in technology.",
+  },
+];
 
 function Education() {
-  const { t } = useLanguage();
-
   return (
-    <section id="education" className="bg-white py-16 sm:py-20 md:py-24 dark:bg-slate-900">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <h2 className="mb-10 text-center text-3xl font-bold sm:text-4xl dark:text-white">
-          {t?.education?.title || "Education"}
-        </h2>
+    <section id="education" className="section-shell">
+      <div className="section-inner">
+        <div className="section-head">
+          <span className="section-kicker">● Education</span>
+          <h2 className="section-title">Academic Path</h2>
+          <p className="lead-copy">
+            Building a strong foundation in software engineering, data systems, and web-based problem solving.
+          </p>
+        </div>
 
-        <div className="space-y-6">
+        <div className="education-stack">
           {education.map((item) => (
-            <div key={item.id} className="rounded-2xl border border-slate-200 p-6 shadow-md sm:p-8 dark:border-slate-700 dark:bg-slate-800">
-              <h3 className="text-xl font-semibold sm:text-2xl dark:text-white">{item.school}</h3>
-              <p className="mt-2 text-blue-600 dark:text-blue-400">{item.degree}</p>
-              <p className="mt-2 text-sm text-gray-500 sm:text-base dark:text-gray-400">{item.period}</p>
-              <p className="mt-4 text-sm leading-7 text-gray-600 sm:text-base dark:text-gray-300">{item.description}</p>
-            </div>
+            <article key={item.id} className="timeline-card">
+              <h3>{item.school}</h3>
+              <p className="meta">{item.degree}</p>
+              <span className="period">{item.period}</span>
+              <p>{item.description}</p>
+            </article>
           ))}
         </div>
       </div>

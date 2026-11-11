@@ -18,17 +18,17 @@ function ThemeToggle() {
         justify-center
         rounded-lg
         border
-        border-slate-200
-        bg-white
+        border-pink-200
+        bg-pink-50
         shadow-sm
         transition
-        hover:bg-slate-100
+        hover:bg-pink-100
       "
     >
       {theme === "light" ? (
-        <MoonIcon className="h-5 w-5 text-slate-700" />
+        <MoonIcon className="h-5 w-5 text-pink-600" />
       ) : (
-        <SunIcon className="h-5 w-5 text-yellow-500" />
+        <SunIcon className="h-5 w-5 text-pink-500" />
       )}
     </button>
   );

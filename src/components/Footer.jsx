@@ -1,34 +1,39 @@
-import useLanguage from "../hooks/useLanguage";
+import {
+  FaFacebook,
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+} from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 
 function Footer() {
-  const { t } = useLanguage();
-
   return (
-    <footer className="bg-slate-900 py-10 text-white dark:bg-slate-950">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 text-center sm:px-8 md:flex-row md:text-left">
-        <div>
-          <h2 className="text-2xl font-bold text-blue-400">Virgin.</h2>
-          <p className="mt-2 text-slate-400">Software Developer Portfolio</p>
+    <footer className="footer-shell">
+      <div className="footer-panel">
+        <h2>Thank You</h2>
+        <p>
+          Thanks for visiting my digital universe. Every project, challenge, and lesson helps shape how I build experiences and solve problems.
+        </p>
+
+        <div className="footer-links">
+          <a href="https://github.com/sefralitavirgin-svg" target="_blank" rel="noreferrer">
+            <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/virgin-kaporoh-670215350/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <FaLinkedin />
+          </a>
+          <a href="https://www.instagram.com/vrgnrsk/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <FaInstagram />
+          </a>
+          <a href="https://www.tiktok.com/@sefraly06" target="_blank" rel="noreferrer" aria-label="TikTok">
+            <SiTiktok />
+          </a>
+          <a href="https://www.facebook.com/vrginrsk" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <FaFacebook />
+          </a>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 text-sm sm:gap-6 sm:text-base md:justify-end">
-          <a href="https://www.linkedin.com/in/virgin-kaporoh-670215350" target="_blank" rel="noreferrer" className="transition hover:text-blue-400">
-            LinkedIn
-          </a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer" className="transition hover:text-blue-400">
-            GitHub
-          </a>
-          <a href="https://www.instagram.com/vrgnrsk" target="_blank" rel="noreferrer" className="transition hover:text-blue-400">
-            Instagram
-          </a>
-          <a href="https://tiktok.com/@sefraly06" target="_blank" rel="noreferrer" className="transition hover:text-blue-400">
-            TikTok
-          </a>
-        </div>
-      </div>
-
-      <div className="mt-8 text-center text-sm text-slate-500">
-        {t?.footer?.copyright || `© ${new Date().getFullYear()} Virgin R. S. Kaporoh. All Rights Reserved.`}
+        <div className="footer-meta">© 2026 Virgin R. S. Kaporoh</div>
       </div>
     </footer>
   );
