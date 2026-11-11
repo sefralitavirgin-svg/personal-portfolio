@@ -1,5 +1,8 @@
-import profile from "../assets/images/profile-porto.png";
+import { motion } from "framer-motion";
 import useLanguage from "../hooks/useLanguage";
+
+import FloatingLeaves from "../components/hero/FloatingLeaves";
+import ProfileFrame from "../components/hero/ProfileFrame";
 
 function Hero() {
   const { t } = useLanguage();
@@ -7,58 +10,113 @@ function Hero() {
   return (
     <section
       id="home"
-      className="flex min-h-screen items-center bg-gradient-to-br from-slate-50 via-white to-blue-50 pt-24 sm:pt-28 lg:pt-20 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800"
+      className="relative overflow-hidden min-h-screen flex items-center pt-24"
     >
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <FloatingLeaves />
 
-          {/* Left */}
-          <div className="order-2 flex flex-col items-center text-center lg:order-none lg:items-start lg:text-left">
-            <p className="mb-4 text-lg font-semibold text-blue-600 dark:text-blue-400">
-              👋 {t.hero.greeting}
-            </p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full">
 
-            <h1 className="text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+
+          {/* LEFT */}
+
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: .8 }}
+          >
+
+            <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-5 py-2 rounded-full font-semibold mb-8">
+
+              🌿
+
+              {t.hero.greeting}
+
+            </span>
+
+            <h1 className="text-6xl lg:text-7xl font-black leading-tight text-slate-900">
+
               Virgin
+
               <br />
-              R. S. Kaporoh
+
+              R. S.
+
+              <br />
+
+              Kaporoh
+
             </h1>
 
-            <h2 className="mt-5 text-2xl text-slate-600 sm:text-3xl dark:text-slate-300">
+            <h2 className="mt-8 text-3xl font-semibold text-green-700">
+
               {t.hero.title}
+
             </h2>
 
-            <p className="mt-6 max-w-xl text-base leading-8 text-slate-500 sm:text-lg dark:text-slate-400">
+            <p className="mt-8 text-lg text-slate-600 leading-9 max-w-xl">
+
               {t.hero.description}
+
             </p>
 
-            <div className="mt-8 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+            <div className="flex flex-wrap gap-5 mt-12">
+
               <a
                 href="#projects"
-                className="rounded-xl bg-blue-600 px-6 py-3 text-center text-white transition hover:bg-blue-700 sm:px-8 sm:py-4 dark:bg-blue-500 dark:hover:bg-blue-400"
+                className="
+                  rounded-2xl
+                  bg-green-600
+                  px-8
+                  py-4
+                  text-white
+                  font-semibold
+                  shadow-lg
+                  hover:bg-green-700
+                  transition
+                "
               >
-                {t.hero.projectButton}
+                🌱 {t.hero.projectButton}
               </a>
 
               <a
                 href="#contact"
-                className="rounded-xl border border-blue-600 px-6 py-3 text-center text-blue-600 transition hover:bg-blue-50 sm:px-8 sm:py-4 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-slate-800"
+                className="
+                  rounded-2xl
+                  border-2
+                  border-green-600
+                  px-8
+                  py-4
+                  font-semibold
+                  text-green-700
+                  hover:bg-green-50
+                  transition
+                "
               >
-                {t.hero.contactButton}
+                🍃 {t.hero.contactButton}
               </a>
-            </div>
-          </div>
 
-          {/* Right */}
-          <div className="order-1 flex justify-center lg:order-none">
-            <img
-              src={profile}
-              alt="Virgin R. S. Kaporoh"
-              className="h-64 w-64 rounded-full border-8 border-white object-cover shadow-2xl sm:h-80 sm:w-80 lg:h-96 lg:w-96 dark:border-slate-800"
-            />
-          </div>
+            </div>
+
+          </motion.div>
+
+          {/* RIGHT */}
+
+          <motion.div
+            initial={{ opacity: 0, scale: .8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: .9 }}
+            className="flex justify-center"
+          >
+
+            <ProfileFrame />
+
+          </motion.div>
+
         </div>
+
       </div>
+
     </section>
   );
 }

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import useLanguage from "../hooks/useLanguage";
+import NatureBackground from "../components/nature/NatureBackground";
 
 function Landing() {
   const navigate = useNavigate();
@@ -8,6 +10,7 @@ function Landing() {
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
+
     if (savedLanguage) {
       setLanguage(savedLanguage);
       navigate("/dashboard");
@@ -21,28 +24,69 @@ function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6">
-      <div className="bg-white shadow-xl rounded-3xl p-10 w-full max-w-lg text-center">
-        <h1 className="text-5xl font-bold text-blue-600 mb-3">Virgin.</h1>
-        <p className="text-gray-600 mb-8">Software Developer Portfolio</p>
-        <h2 className="text-2xl font-semibold mb-2">Welcome 👋</h2>
-        <p className="text-gray-500 mb-10">Please choose your preferred language.</p>
+    <>
+      <NatureBackground />
 
-        <button
-          onClick={() => chooseLanguage("id")}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-lg font-semibold transition mb-4"
-        >
-          🇮🇩 Bahasa Indonesia
-        </button>
+      <div className="min-h-screen flex items-center justify-center px-6">
 
-        <button
-          onClick={() => chooseLanguage("en")}
-          className="w-full border border-blue-600 text-blue-600 hover:bg-blue-50 py-3 rounded-xl text-lg font-semibold transition"
-        >
-          🇺🇸 English
-        </button>
+        <div className="glass w-full max-w-lg rounded-3xl p-10 text-center">
+
+          <h1 className="mb-3 text-5xl font-bold text-green-700">
+            Virgin.
+          </h1>
+
+          <p className="mb-8 text-slate-600">
+            Software Developer Portfolio
+          </p>
+
+          <h2 className="mb-2 text-2xl font-semibold">
+            Welcome 👋
+          </h2>
+
+          <p className="mb-10 text-slate-500">
+            Please choose your preferred language.
+          </p>
+
+          <button
+            onClick={() => chooseLanguage("id")}
+            className="
+              mb-4
+              w-full
+              rounded-xl
+              bg-green-600
+              py-3
+              text-lg
+              font-semibold
+              text-white
+              transition
+              hover:bg-green-700
+            "
+          >
+            🇮🇩 Bahasa Indonesia
+          </button>
+
+          <button
+            onClick={() => chooseLanguage("en")}
+            className="
+              w-full
+              rounded-xl
+              border
+              border-green-600
+              py-3
+              text-lg
+              font-semibold
+              text-green-700
+              transition
+              hover:bg-green-50
+            "
+          >
+            🇺🇸 English
+          </button>
+
+        </div>
+
       </div>
-    </div>
+    </>
   );
 }
 

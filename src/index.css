@@ -1,20 +1,112 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(
+    180deg,
+    #f7fff8 0%,
+    #eef9f1 40%,
+    #ffffff 100%
+  );
+  color: #1f2937;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef8f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6fbf73;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4caf50;
+}
+
+/* Selection */
+
+::selection {
+  background: #7ccf8a;
+  color: white;
+}
+
+/* Floating Background */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+      radial-gradient(circle at 15% 20%, rgba(118, 255, 140, .18), transparent 25%),
+      radial-gradient(circle at 80% 10%, rgba(76, 175, 80, .12), transparent 30%),
+      radial-gradient(circle at 70% 80%, rgba(129, 199, 132, .15), transparent 25%);
+  z-index: -2;
+}
+
+/* Blur blobs */
+
+body::after{
+  content:"";
+  position:fixed;
+  width:500px;
+  height:500px;
+  left:-150px;
+  top:-120px;
+  background:#8fd694;
+  filter:blur(120px);
+  opacity:.15;
+  border-radius:50%;
+  z-index:-2;
+}
+
+/* Glass Card */
+
+.glass{
+    background: rgba(255,255,255,.65);
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    border:1px solid rgba(255,255,255,.5);
+    box-shadow:0 10px 30px rgba(30,80,40,.08);
+}
+
+/* Nature Shadow */
+
+.shadow-nature{
+  box-shadow:
+  0 20px 60px rgba(46,125,50,.15);
+}
+
+/* Image Hover */
+
+.profile-hover{
+  transition:.5s;
+}
+
+.profile-hover:hover{
+  transform:translateY(-8px) scale(1.02);
+}
+
+/* Smooth */
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family: Inter, sans-serif;
-    background:#F8FAFC;
-    color:#111827;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-button{
-    cursor:pointer;
+  transition:
+  background-color .3s,
+  color .3s,
+  border-color .3s;
 }
