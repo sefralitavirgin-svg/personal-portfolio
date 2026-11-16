@@ -1,4 +1,4 @@
-import resume from "../assets/resume/Virgin_R_S_Kaporoh_CV.pdf";
+import resume from "../assets/resume/Virgin_Kaporoh_Updated_CV.pdf";
 
 const experience = [
   {

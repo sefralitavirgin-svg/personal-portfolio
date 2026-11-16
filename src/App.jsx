@@ -5,7 +5,6 @@ import { ThemeProvider } from "./context/ThemeContext";
 
 import ScrollToTop from "./components/ScrollToTop";
 import Dashboard from "./pages/Dashboard";
-import HandGesture from "./components/HandGesture";
 
 function App() {
   return (
@@ -18,8 +17,6 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
-
-          <HandGesture />
         </BrowserRouter>
       </ThemeProvider>
     </LanguageProvider>

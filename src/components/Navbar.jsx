@@ -4,7 +4,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 import useLanguage from "../hooks/useLanguage";
 
-import resume from "../assets/resume/Virgin_R_S_Kaporoh_CV.pdf";
+import resume from "../assets/resume/Virgin_Kaporoh_Updated_CV.pdf";
 
 import { FaFilePdf } from "react-icons/fa";
 import { HiBars3, HiXMark } from "react-icons/hi2";

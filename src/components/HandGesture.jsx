@@ -5,7 +5,7 @@ import {
   GestureRecognizer,
 } from "@mediapipe/tasks-vision";
 
-import resume from "../assets/resume/Virgin_R_S_Kaporoh_CV.pdf";
+import resume from "../assets/resume/Virgin_Kaporoh_Updated_CV.pdf";
 
 export default function HandGesture() {
   const videoRef = useRef(null);
@@ -203,7 +203,7 @@ export default function HandGesture() {
       candidateRef.current = "";
       stableCountRef.current = 0;
 
-      detect();
+      animationRef.current = requestAnimationFrame(detect);
     } catch (err) {
       console.error("Hand Gesture Error:", err);
 
@@ -216,10 +216,8 @@ export default function HandGesture() {
   // DETECTION LOOP
   // ==============================
 
-  function detect() {
+  function detect(now) {
     if (!videoRef.current || !recognizerRef.current) return;
-
-    const now = performance.now();
 
     if (
       videoRef.current.readyState >= 2 &&
@@ -251,14 +249,12 @@ export default function HandGesture() {
 
             setGesture(detected || "No gesture detected");
 
-            const currentTime = Date.now();
-
             if (
               detected &&
-              currentTime - lastActionRef.current > 1500
+              now - lastActionRef.current > 1500
             ) {
               executeGesture(detected);
-              lastActionRef.current = currentTime;
+              lastActionRef.current = now;
             }
           }
         }
