@@ -2,19 +2,61 @@ function Skills() {
   const skillGroups = [
     {
       title: "Frontend Development",
-      items: ["HTML", "CSS", "JavaScript", "React", "Tailwind", "Responsive UI"],
+      items: [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "React.js",
+        "Tailwind CSS",
+        "Responsive Design",
+        "Vite",
+      ],
     },
     {
       title: "Backend Development",
-      items: ["PHP", "Laravel", "REST APIs", "Authentication", "Web Logic"],
+      items: [
+        "Node.js",
+        "Express.js",
+        "Laravel",
+        "PHP",
+        "REST API",
+        "Application Logic",
+        "Authentication",
+      ],
     },
     {
       title: "Database Management",
-      items: ["MySQL", "Schema Design", "Query Optimization", "Data Modeling"],
+      items: [
+        "MySQL",
+        "PostgreSQL",
+        "Database Design",
+        "SQL Queries",
+        "Data Modeling",
+        "CRUD Operations",
+      ],
     },
     {
-      title: "Tools & Technologies",
-      items: ["Git", "GitHub", "VS Code", "Figma", "Postman", "Web Deployment"],
+      title: "Development Tools",
+      items: [
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Postman",
+        "Figma",
+        "XAMPP",
+        "Laragon",
+        "Vercel",
+      ],
+    },
+    {
+      title: "Additional Technologies",
+      items: [
+        "Python",
+        "Flutter",
+        "Firebase",
+        "AI-Assisted Development",
+        "Web Deployment",
+      ],
     },
   ];
 
@@ -23,9 +65,15 @@ function Skills() {
       <div className="section-inner">
         <div className="section-head">
           <span className="section-kicker">● Skills</span>
-          <h2 className="section-title">Tools I Build With</h2>
+
+          <h2 className="section-title">
+            Technologies & Expertise
+          </h2>
+
           <p className="lead-copy">
-            A focused stack for building digital products, solving technical problems, and turning ideas into usable experiences.
+            My technical toolkit for designing, developing,
+            and maintaining web applications, working with
+            databases, and building practical digital solutions.
           </p>
         </div>
 
@@ -33,6 +81,7 @@ function Skills() {
           {skillGroups.map((group) => (
             <div key={group.title} className="skill-group">
               <h3>{group.title}</h3>
+
               <div className="skill-list">
                 {group.items.map((item) => (
                   <span key={item} className="skill-item">

@@ -1,27 +1,46 @@
+import React from "react";
+
 const projects = [
   {
     id: 1,
-    title: "Student Finance Tracker",
-    description: "A dashboard for managing budgets, tracking spending, and organizing student financial activities with a clean, practical interface.",
-    tech: ["React", "PHP", "MySQL"],
-    github: "https://github.com/sefralitavirgin-svg/student-finance-tracker",
-    demo: "#",
+    title: "VIREA",
+    category: "Personal Management Application",
+    description:
+      "A personal management application designed to help users organize daily activities, manage tasks, track schedules, and improve productivity through an intuitive digital workspace.",
+    tech: ["React", "Laravel", "MySQL"],
+    github: null,
+    demo: "https://vireaa.vercel.app",
   },
   {
     id: 2,
-    title: "VIREA",
-    description: "A study planner focused on assignment tracking, deadlines, and daily organization for students and learners.",
-    tech: ["React", "Laravel", "MySQL"],
-    github: "https://github.com/sefralitavirgin-svg/personal-portofolio",
-    demo: "vireaa.vercel.app",
+    title: "ENGENEr",
+    category: "Full-Stack Web Application",
+    description:
+      "A fan community web application inspired by ENHYPEN, featuring an interactive dashboard, discography, collection tracker, personal diary, countdowns, and an administrative content management system.",
+    tech: ["React", "Vite", "Node.js", "Express", "PostgreSQL"],
+    github: null,
+    demo: null,
   },
   {
     id: 3,
-    title: "Confess Website",
-    description: "A lightweight content platform designed for anonymous stories and community interactions with a modern, user-friendly UX.",
-    tech: ["React", "Firebase"],
-    github: "https://github.com/sefralitavirgin-svg",
-    demo: "#",
+    title: "THE SIN",
+    category: "Web Application",
+    description:
+      "A fan-made album archive and management platform featuring album information, member profiles, era-based content, and database-driven content management.",
+    tech: ["PHP", "MySQL", "JavaScript", "CSS"],
+    github: null,
+    demo: null,
+  },
+  {
+    id: 4,
+    title: "Personal Portfolio",
+    category: "Frontend Development",
+    description:
+      "A personal developer portfolio showcasing technical skills, professional experience, selected projects, and career interests through a responsive and modern interface.",
+    tech: ["React", "Vite", "JavaScript", "CSS"],
+    github:
+      "https://github.com/sefralitavirgin-svg/personal-portofolio",
+    demo: null,
   },
 ];
 
@@ -31,9 +50,15 @@ function Projects() {
       <div className="section-inner">
         <div className="section-head">
           <span className="section-kicker">● Portfolio</span>
-          <h2 className="section-title">Selected Projects</h2>
+
+          <h2 className="section-title">
+            Selected Projects
+          </h2>
+
           <p className="lead-copy">
-            A snapshot of learning-driven work covering web development, data management, and practical problem solving.
+            A collection of software development projects
+            showcasing my experience in web technologies,
+            application development, and practical digital solutions.
           </p>
         </div>
 
@@ -43,7 +68,12 @@ function Projects() {
               <div className="project-art" aria-hidden="true" />
 
               <div className="project-body">
+                <span className="project-category">
+                  {project.category}
+                </span>
+
                 <h3>{project.title}</h3>
+
                 <p>{project.description}</p>
 
                 <div className="tech-row">
@@ -54,14 +84,31 @@ function Projects() {
                   ))}
                 </div>
 
-                <div className="project-links">
-                  <a className="project-link primary" href={project.github} target="_blank" rel="noreferrer">
-                    GitHub
-                  </a>
-                  <a className="project-link" href={project.demo} target="_blank" rel="noreferrer">
-                    Demo
-                  </a>
-                </div>
+                {(project.github || project.demo) && (
+                  <div className="project-links">
+                    {project.github && (
+                      <a
+                        className="project-link primary"
+                        href={project.github}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        GitHub
+                      </a>
+                    )}
+
+                    {project.demo && (
+                      <a
+                        className="project-link"
+                        href={project.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Live Demo
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </article>
           ))}
