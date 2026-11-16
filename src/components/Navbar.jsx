@@ -7,9 +7,10 @@ import useLanguage from "../hooks/useLanguage";
 import resume from "../assets/resume/Virgin_Kaporoh_Updated_CV.pdf";
 
 import { FaFilePdf } from "react-icons/fa";
+import { FaHand } from "react-icons/fa6";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 
-function Navbar() {
+function Navbar({ onOpenHandNavigation }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -49,6 +50,15 @@ function Navbar() {
               {link.label}
             </a>
           ))}
+          <button
+            type="button"
+            className="nav-link hand-nav-trigger"
+            onClick={onOpenHandNavigation}
+            aria-haspopup="dialog"
+          >
+            <FaHand aria-hidden="true" />
+            HAND NAV
+          </button>
         </nav>
 
         <div className="nav-actions">
@@ -83,6 +93,17 @@ function Navbar() {
               <span className="number">{link.number}</span>
             </a>
           ))}
+          <button
+            type="button"
+            className="mobile-hand-nav"
+            onClick={() => {
+              closeMenu();
+              onOpenHandNavigation();
+            }}
+          >
+            <span><FaHand aria-hidden="true" /> Hand Gesture Navigation</span>
+            <span className="number">✋</span>
+          </button>
           <a href={resume} download="Virgin_R_S_Kaporoh_CV.pdf" onClick={closeMenu} className="mobile-resume">
             <span>{t?.navbar?.downloadCV || "Download CV"}</span>
             <FaFilePdf />

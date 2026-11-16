@@ -7,7 +7,7 @@ import {
 
 import resume from "../assets/resume/Virgin_Kaporoh_Updated_CV.pdf";
 
-export default function HandGesture() {
+export default function HandGesture({ isOpen, onClose }) {
   const videoRef = useRef(null);
   const recognizerRef = useRef(null);
   const streamRef = useRef(null);
@@ -308,6 +308,8 @@ export default function HandGesture() {
     };
   }, []);
 
+  if (!isOpen) return null;
+
   // ==============================
   // UI
   // ==============================
@@ -322,38 +324,18 @@ export default function HandGesture() {
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: "24px",
-        right: "24px",
-        zIndex: 9999,
-        background: "#fff",
-        color: "#333",
-        padding: "16px",
-        borderRadius: "16px",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
-        width: "230px",
-        fontFamily: "sans-serif",
-      }}
-    >
-      <h3 style={{ margin: "0 0 12px", fontSize: "15px" }}>
-        ✨ Hand Navigation
-      </h3>
+    <aside className="hand-nav-panel" role="dialog" aria-modal="false" aria-labelledby="hand-nav-title">
+      <div className="hand-nav-heading">
+        <h3 id="hand-nav-title">✋ Hand Navigation</h3>
+        <button type="button" className="hand-nav-close" onClick={onClose} aria-label="Close hand navigation">
+          ×
+        </button>
+      </div>
 
       <button
         onClick={enabled ? stopControl : startControl}
         disabled={loading}
-        style={{
-          width: "100%",
-          padding: "11px",
-          border: "none",
-          borderRadius: "10px",
-          background: enabled ? "#dc647d" : "#e9a1b3",
-          color: "white",
-          cursor: loading ? "wait" : "pointer",
-          fontWeight: "bold",
-        }}
+        className={`hand-nav-toggle ${enabled ? "active" : ""}`}
       >
         {loading
           ? "Loading..."
@@ -367,45 +349,29 @@ export default function HandGesture() {
         autoPlay
         playsInline
         muted
-        style={{
-          width: "100%",
-          marginTop: "12px",
-          borderRadius: "10px",
-          display: enabled ? "block" : "none",
-          transform: "scaleX(-1)",
-        }}
+        className={`hand-nav-video ${enabled ? "visible" : ""}`}
       />
 
-      <p style={{ fontSize: "12px", marginBottom: "5px" }}>
+      <p className="hand-nav-status">
         Status: {enabled ? "🟢 Active" : "⚪ Inactive"}
       </p>
 
-      <p style={{ fontSize: "12px", margin: "0 0 12px" }}>
+      <p className="hand-nav-gesture">
         Gesture: {gestureNames[gesture] || gesture}
       </p>
 
-      <div
-        style={{
-          borderTop: "1px solid #eee",
-          paddingTop: "10px",
-          fontSize: "11px",
-          lineHeight: "1.8",
-          color: "#777",
-        }}
-      >
-        ☝️ About<br />
-        ✌️ Projects<br />
-        🤟 Skills<br />
-        🖖 Experience<br />
-        🖐️ Contact<br />
-        👌 Download CV
+      <div className="hand-nav-shortcuts">
+        <span>☝️ About</span>
+        <span>✌️ Projects</span>
+        <span>🤟 Skills</span>
+        <span>🖖 Experience</span>
+        <span>🖐️ Contact</span>
+        <span>👌 Download CV</span>
       </div>
 
       {error && (
-        <p style={{ color: "red", fontSize: "11px" }}>
-          {error}
-        </p>
+        <p className="hand-nav-error" role="alert">{error}</p>
       )}
-    </div>
+    </aside>
   );
 }
