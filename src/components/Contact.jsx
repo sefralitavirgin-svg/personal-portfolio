@@ -6,56 +6,58 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
+import useLanguage from "../hooks/useLanguage";
+import { ownerKnowledge } from "../data/ownerKnowledge";
 
 const contacts = [
   {
     title: "Email",
-    value: "sefralitavirgin@gmail.com",
+    value: ownerKnowledge.contact.email,
     icon: <FaEnvelope />,
-    link: "mailto:sefralitavirgin@gmail.com",
+    link: `mailto:${ownerKnowledge.contact.email}`,
   },
   {
     title: "GitHub",
     value: "github.com/sefralitavirgin-svg",
     icon: <FaGithub />,
-    link: "https://github.com/sefralitavirgin-svg",
+    link: ownerKnowledge.contact.github,
   },
   {
     title: "LinkedIn",
     value: "linkedin.com/in/virgin-kaporoh-670215350",
     icon: <FaLinkedin />,
-    link: "https://www.linkedin.com/in/virgin-kaporoh-670215350/",
+    link: ownerKnowledge.contact.linkedin,
   },
   {
     title: "TikTok",
     value: "@sefraly06",
     icon: <SiTiktok />,
-    link: "https://www.tiktok.com/@sefraly06",
+    link: ownerKnowledge.contact.tiktok,
   },
   {
     title: "Instagram",
     value: "@vrgnrsk",
     icon: <FaInstagram />,
-    link: "https://www.instagram.com/vrgnrsk/",
+    link: ownerKnowledge.contact.instagram,
   },
   {
     title: "Facebook",
     value: "facebook.com/vrginrsk",
     icon: <FaFacebook />,
-    link: "https://www.facebook.com/vrginrsk",
+    link: ownerKnowledge.contact.facebook,
   },
 ];
 
 function Contact() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="section-shell">
       <div className="section-inner">
         <div className="section-head">
-          <span className="section-kicker">● Contact</span>
-          <h2 className="section-title">Let’s Connect</h2>
-          <p className="lead-copy">
-            I’m open to collaboration, learning opportunities, and conversations around building useful digital experiences.
-          </p>
+          <span className="section-kicker">{t.contact.kicker}</span>
+          <h2 className="section-title">{t.contact.title}</h2>
+          <p className="lead-copy">{t.contact.description}</p>
         </div>
 
         <div className="contact-grid">

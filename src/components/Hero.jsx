@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import useLanguage from "../hooks/useLanguage";
 
 import profileImage from "../assets/images/profile-porto.png";
 import globeImageOne from "../assets/images/file_00000000c37881fab14d1dae394e0408.png";
@@ -9,22 +10,23 @@ import GlobeScene from "./GlobeScene";
 const profileName = "VIRGIN KAPOROH";
 
 const orbitalItems = [
-  { number: "01.", label: "ABOUT", href: "#about", x: 6, y: 20 },
-  { number: "02.", label: "PROJECTS", href: "#projects", x: 66, y: 10 },
-  { number: "03.", label: "SKILLS", href: "#skills", x: 72, y: 54 },
-  { number: "04.", label: "EXPERIENCE", href: "#experience", x: 24, y: 75 },
-  { number: "05.", label: "RESUME", href: "#resume", x: 8, y: 58 },
-  { number: "06.", label: "CONTACT", href: "#contact", x: 83, y: 32 },
+  { number: "01.", key: "about", href: "#about", x: 6, y: 20 },
+  { number: "02.", key: "projects", href: "#projects", x: 66, y: 10 },
+  { number: "03.", key: "skills", href: "#skills", x: 72, y: 54 },
+  { number: "04.", key: "experience", href: "#experience", x: 24, y: 75 },
+  { number: "05.", key: "resume", href: "#resume", x: 8, y: 58 },
+  { number: "06.", key: "contact", href: "#contact", x: 83, y: 32 },
 ];
 
 const globePhotos = [
-  { id: 1, src: globeImageOne, label: "ME", left: 28, top: 18, size: 68 },
-  { id: 2, src: globeImageTwo, label: "LIFE", left: 70, top: 58, size: 72 },
-  { id: 3, src: globeImageThree, label: "STUDIO", left: 54, top: 30, size: 62 },
-  { id: 4, src: profileImage, label: "WORK", left: 42, top: 68, size: 60 },
+  { id: 1, src: globeImageOne, labelKey: "me", left: 28, top: 18, size: 68 },
+  { id: 2, src: globeImageTwo, labelKey: "life", left: 70, top: 58, size: 72 },
+  { id: 3, src: globeImageThree, labelKey: "studio", left: 54, top: 30, size: 62 },
+  { id: 4, src: profileImage, labelKey: "work", left: 42, top: 68, size: 60 },
 ];
 
 function Hero() {
+  const { t } = useLanguage();
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [draggedId, setDraggedId] = useState(null);
   const [photoPositions, setPhotoPositions] = useState(() =>
@@ -111,21 +113,21 @@ function Hero() {
             <span className="hero-kicker">● {profileName}</span>
 
             <h1 className="hero-title">
-              Building <span className="accent">Digital Experiences.</span>
+            {t.hero.title} <span className="accent">{t.hero.titleAccent}</span>
             </h1>
 
-            <p className="hero-role">Aspiring Software Developer</p>
+            <p className="hero-role">{t.hero.role}</p>
 
             <p className="hero-description">
-              Exploring technology, creating solutions, and turning ideas into functional digital experiences.
+            {t.hero.description}
             </p>
 
             <div className="hero-actions">
               <a href="#projects" className="hero-button">
-                EXPLORE MY DIGITAL UNIVERSE
+                {t.hero.explore}
               </a>
               <a href="#contact" className="hero-button-secondary">
-                CONNECT
+                {t.hero.connect}
               </a>
             </div>
           </div>
@@ -137,9 +139,13 @@ function Hero() {
                 transform: `perspective(1200px) rotateX(${cursor.y * -10}deg) rotateY(${cursor.x * 18}deg)`,
               }}
             >
-              <GlobeScene pointerX={cursor.x} pointerY={cursor.y} />
+              <GlobeScene
+                pointerX={cursor.x}
+                pointerY={cursor.y}
+                ariaLabel={t.hero.globe}
+              />
 
-              <div className="globe-photo-layer" aria-label="Floating portfolio photos">
+              <div className="globe-photo-layer" aria-label={t.hero.floatingPhotos}>
                 {globePhotos.map((photo) => {
                   const position = photoPositions.find((item) => item.id === photo.id) ?? { left: photo.left, top: photo.top };
 
@@ -155,15 +161,15 @@ function Hero() {
                       }}
                       onPointerDown={(event) => handlePhotoPointerDown(event, photo.id)}
                     >
-                      <img src={photo.src} alt={photo.label} />
-                      <span>{photo.label}</span>
+                      <img src={photo.src} alt={t.hero.photos[photo.labelKey]} />
+                      <span>{t.hero.photos[photo.labelKey]}</span>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            <nav className="orbital-nav" aria-label="Portfolio sections">
+            <nav className="orbital-nav" aria-label={t.hero.portfolioSections}>
               {orbitalItems.map((item) => (
                 <a
                   key={item.href}
@@ -176,7 +182,7 @@ function Hero() {
                   }}
                 >
                   <span>{item.number}</span>
-                  <span>{item.label}</span>
+                  <span>{t.hero.sections[item.key]}</span>
                 </a>
               ))}
             </nav>

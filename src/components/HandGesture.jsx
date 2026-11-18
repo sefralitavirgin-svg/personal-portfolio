@@ -6,8 +6,10 @@ import {
 } from "@mediapipe/tasks-vision";
 
 import resume from "../assets/resume/Virgin_Kaporoh_Updated_CV.pdf";
+import useLanguage from "../hooks/useLanguage";
 
 export default function HandGesture({ isOpen, onClose }) {
+  const { t } = useLanguage();
   const videoRef = useRef(null);
   const recognizerRef = useRef(null);
   const streamRef = useRef(null);
@@ -21,7 +23,7 @@ export default function HandGesture({ isOpen, onClose }) {
 
   const [enabled, setEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [gesture, setGesture] = useState("Waiting...");
+  const [gesture, setGesture] = useState(t.handNav.waiting);
   const [error, setError] = useState("");
 
   // ==============================
@@ -247,7 +249,7 @@ export default function HandGesture({ isOpen, onClose }) {
           if (detected !== lastGestureRef.current) {
             lastGestureRef.current = detected;
 
-            setGesture(detected || "No gesture detected");
+            setGesture(detected || t.handNav.noGesture);
 
             if (
               detected &&
@@ -288,7 +290,7 @@ export default function HandGesture({ isOpen, onClose }) {
     stableCountRef.current = 0;
 
     setEnabled(false);
-    setGesture("Waiting...");
+    setGesture(t.handNav.waiting);
   }
 
   // ==============================
@@ -314,20 +316,11 @@ export default function HandGesture({ isOpen, onClose }) {
   // UI
   // ==============================
 
-  const gestureNames = {
-    ABOUT: "☝️ About",
-    PROJECTS: "✌️ Projects",
-    SKILLS: "🤟 Skills",
-    EXPERIENCE: "🖖 Experience",
-    CONTACT: "🖐️ Contact",
-    OK_SIGN: "👌 Download CV",
-  };
-
   return (
     <aside className="hand-nav-panel" role="dialog" aria-modal="false" aria-labelledby="hand-nav-title">
       <div className="hand-nav-heading">
-        <h3 id="hand-nav-title">✋ Hand Navigation</h3>
-        <button type="button" className="hand-nav-close" onClick={onClose} aria-label="Close hand navigation">
+        <h3 id="hand-nav-title">{t.handNav.title}</h3>
+        <button type="button" className="hand-nav-close" onClick={onClose} aria-label={t.handNav.close}>
           ×
         </button>
       </div>
@@ -338,10 +331,10 @@ export default function HandGesture({ isOpen, onClose }) {
         className={`hand-nav-toggle ${enabled ? "active" : ""}`}
       >
         {loading
-          ? "Loading..."
+          ? t.handNav.loading
           : enabled
-          ? "Disable Hand Control"
-          : "Enable Hand Control"}
+          ? t.handNav.disable
+          : t.handNav.enable}
       </button>
 
       <video
@@ -353,20 +346,23 @@ export default function HandGesture({ isOpen, onClose }) {
       />
 
       <p className="hand-nav-status">
-        Status: {enabled ? "🟢 Active" : "⚪ Inactive"}
+        {t.handNav.status}: {enabled ? t.handNav.active : t.handNav.inactive}
       </p>
 
       <p className="hand-nav-gesture">
-        Gesture: {gestureNames[gesture] || gesture}
+        {t.handNav.gesture}: {
+          gesture === "Waiting..." || gesture === "Menunggu..."
+            ? t.handNav.waiting
+            : gesture === "No gesture detected" || gesture === "Gestur tidak terdeteksi"
+            ? t.handNav.noGesture
+            : t.handNav.gestures[gesture] || gesture
+        }
       </p>
 
       <div className="hand-nav-shortcuts">
-        <span>☝️ About</span>
-        <span>✌️ Projects</span>
-        <span>🤟 Skills</span>
-        <span>🖖 Experience</span>
-        <span>🖐️ Contact</span>
-        <span>👌 Download CV</span>
+        {Object.values(t.handNav.gestures).map((label) => (
+          <span key={label}>{label}</span>
+        ))}
       </div>
 
       {error && (

@@ -5,15 +5,16 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
+import useLanguage from "../hooks/useLanguage";
 
 function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="footer-shell">
       <div className="footer-panel">
-        <h2>Thank You</h2>
-        <p>
-          Thanks for visiting my digital universe. Every project, challenge, and lesson helps shape how I build experiences and solve problems.
-        </p>
+        <h2>{t.footer.title}</h2>
+        <p>{t.footer.description}</p>
 
         <div className="footer-links">
           <a href="https://github.com/sefralitavirgin-svg" target="_blank" rel="noreferrer">
@@ -33,7 +34,7 @@ function Footer() {
           </a>
         </div>
 
-        <div className="footer-meta">© 2026 Virgin R. S. Kaporoh</div>
+        <div className="footer-meta">{t.footer.copyright}</div>
       </div>
     </footer>
   );

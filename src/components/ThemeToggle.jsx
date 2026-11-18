@@ -1,4 +1,5 @@
 import useTheme from "../hooks/useTheme";
+import useLanguage from "../hooks/useLanguage";
 import {
   MoonIcon,
   SunIcon,
@@ -6,10 +7,17 @@ import {
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
+  const { language } = useLanguage();
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
+      aria-label={
+        theme === "light"
+          ? language === "id" ? "Aktifkan tema gelap" : "Enable dark theme"
+          : language === "id" ? "Aktifkan tema terang" : "Enable light theme"
+      }
       className="
         flex
         h-9

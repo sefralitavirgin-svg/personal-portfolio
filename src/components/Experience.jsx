@@ -1,80 +1,57 @@
 import resume from "../assets/resume/Virgin_Kaporoh_Updated_CV.pdf";
+import useLanguage from "../hooks/useLanguage";
 
-const experience = [
+const experienceData = [
   {
     id: 1,
-    role: "Freelance Web Developer",
-    company: "Self-employed",
-    period: "2026 - Present",
-    description:
-      "Designed and developed web applications based on project requirements. Worked on application logic, database functionality, and responsive user interfaces to deliver practical digital solutions.",
+    company: "selfEmployed",
   },
   {
     id: 2,
-    role: "Web Developer",
-    company: "Warung Shifa",
-    period: "2026",
-    description:
-      "Designed and developed a web-based Point of Sale (POS) system for a local small business. Translated client requirements into functional system features, implemented responsive interfaces, and integrated database functionality.",
+    company: "shifa",
   },
   {
     id: 3,
-    role: "IT Intern",
-    company: "Dinas Kesehatan Kota Kotamobagu",
-    period: "2026",
-    description:
-      "Supported spreadsheet-based data administration and document management. Assisted with basic IT support, technical documentation, and administrative technology-related tasks.",
+    company: "healthOffice",
   },
   {
     id: 4,
-    role: "Content Creator Staff",
-    company: "Arts & Entertainment Student Organization",
-    period: "September 2024 - December 2025",
-    description:
-      "Created digital content to promote organizational activities and events. Collaborated with team members to produce engaging social media content, support visual communication, and contribute to campus event planning and execution.",
+    company: "studentOrganization",
   },
 ];
 
 function Experience() {
+  const { t } = useLanguage();
+
   return (
     <section id="experience" className="section-shell">
       <div className="section-inner">
         <div className="section-head">
-          <span className="section-kicker">● Experience</span>
+          <span className="section-kicker">{t.experience.kicker}</span>
 
-          <h2 className="section-title">
-            Building, Learning & Delivering
-          </h2>
+          <h2 className="section-title">{t.experience.title}</h2>
 
-          <p className="lead-copy">
-            A journey through professional projects, freelance
-            development, internship experience, and collaborative
-            creative work.
-          </p>
+          <p className="lead-copy">{t.experience.description}</p>
         </div>
 
         <div className="experience-stack">
-          {experience.map((item) => (
+          {experienceData.map((item, index) => (
             <article key={item.id} className="timeline-card">
-              <h3>{item.role}</h3>
+              <h3>{t.experience.roles[index]}</h3>
 
-              <p className="meta">{item.company}</p>
+              <p className="meta">{t.experience.companies[item.company]}</p>
 
-              <span className="period">{item.period}</span>
+              <span className="period">{t.experience.periods[index]}</span>
 
-              <p>{item.description}</p>
+              <p>{t.experience.descriptions[index]}</p>
             </article>
           ))}
         </div>
 
         <div id="resume" className="resume-panel">
-          <h3>Resume Access</h3>
+          <h3>{t.experience.resumeTitle}</h3>
 
-          <p>
-            Explore my professional background, technical skills,
-            education, and selected development experience through
-            my latest resume.
-          </p>
+          <p>{t.experience.resumeDescription}</p>
 
           <div className="resume-actions">
             <a
@@ -82,11 +59,11 @@ function Experience() {
               href={resume}
               download="Virgin_R_S_Kaporoh_CV.pdf"
             >
-              Download Resume
+              {t.experience.download}
             </a>
 
             <a className="resume-link secondary" href="#contact">
-              Contact Me
+              {t.navbar.contact}
             </a>
           </div>
         </div>

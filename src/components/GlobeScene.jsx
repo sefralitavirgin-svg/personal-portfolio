@@ -26,12 +26,12 @@ const globeNodes = [
   { left: 10, top: 48, size: 4, opacity: 0.87 },
 ];
 
-function GlobeScene({ pointerX = 0, pointerY = 0 }) {
+function GlobeScene({ pointerX = 0, pointerY = 0, ariaLabel }) {
   const globeTiltX = pointerY * 18;
   const globeTiltY = pointerX * 22;
 
   return (
-    <div className="globe-scene" aria-label="Digital globe illustration">
+    <div className="globe-scene" aria-label={ariaLabel}>
       <div className="globe-orbit orbit-one" />
       <div className="globe-orbit orbit-two" />
       <div className="globe-shell" style={{ transform: `rotateX(${globeTiltX}deg) rotateY(${globeTiltY}deg)` }}>

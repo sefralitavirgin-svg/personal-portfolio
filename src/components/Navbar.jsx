@@ -26,12 +26,12 @@ function Navbar({ onOpenHandNavigation }) {
   }, []);
 
   const navLinks = [
-    { href: "#about", label: "ABOUT", number: "01." },
-    { href: "#projects", label: "PROJECTS", number: "02." },
-    { href: "#skills", label: "SKILLS", number: "03." },
-    { href: "#experience", label: "EXPERIENCE", number: "04." },
-    { href: "#resume", label: "RESUME", number: "05." },
-    { href: "#contact", label: "CONTACT", number: "06." },
+    { href: "#about", label: t.navbar.about, number: "01." },
+    { href: "#projects", label: t.navbar.projects, number: "02." },
+    { href: "#skills", label: t.navbar.skills, number: "03." },
+    { href: "#experience", label: t.navbar.experience, number: "04." },
+    { href: "#resume", label: t.navbar.resume, number: "05." },
+    { href: "#contact", label: t.navbar.contact, number: "06." },
   ];
 
   const closeMenu = () => setMenuOpen(false);
@@ -43,7 +43,7 @@ function Navbar({ onOpenHandNavigation }) {
           Virgin.
         </a>
 
-        <nav className="desktop-nav" aria-label="Main navigation">
+        <nav className="desktop-nav" aria-label={t.navbar.mainNavigation}>
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} className="nav-link">
               <span className="number">{link.number}</span>
@@ -57,7 +57,7 @@ function Navbar({ onOpenHandNavigation }) {
             aria-haspopup="dialog"
           >
             <FaHand aria-hidden="true" />
-            HAND NAV
+            {t.navbar.handNav}
           </button>
         </nav>
 
@@ -68,8 +68,13 @@ function Navbar({ onOpenHandNavigation }) {
           <div className="nav-chip-secondary">
             <ThemeToggle />
           </div>
-          <a href={resume} download="Virgin_R_S_Kaporoh_CV.pdf" className="nav-chip">
-            <FaFilePdf />
+          <a
+            href={resume}
+            download="Virgin_R_S_Kaporoh_CV.pdf"
+            className="nav-chip"
+            aria-label={t.navbar.downloadCV}
+          >
+            <FaFilePdf aria-hidden="true" />
           </a>
         </div>
 
@@ -77,7 +82,8 @@ function Navbar({ onOpenHandNavigation }) {
           <button
             onClick={() => setMenuOpen((open) => !open)}
             className="nav-chip-secondary"
-            aria-label="Toggle menu"
+            type="button"
+            aria-label={t.navbar.toggleMenu}
             aria-expanded={menuOpen}
           >
             {menuOpen ? <HiXMark className="h-5 w-5" /> : <HiBars3 className="h-5 w-5" />}
@@ -101,7 +107,7 @@ function Navbar({ onOpenHandNavigation }) {
               onOpenHandNavigation();
             }}
           >
-            <span><FaHand aria-hidden="true" /> Hand Gesture Navigation</span>
+            <span><FaHand aria-hidden="true" /> {t.navbar.handNavigation}</span>
             <span className="number">✋</span>
           </button>
           <a href={resume} download="Virgin_R_S_Kaporoh_CV.pdf" onClick={closeMenu} className="mobile-resume">

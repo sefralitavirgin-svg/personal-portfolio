@@ -1,42 +1,45 @@
+import useLanguage from "../hooks/useLanguage";
+
 function Skills() {
+  const { t } = useLanguage();
   const skillGroups = [
     {
-      title: "Frontend Development",
+      title: t.skills.groups[0],
       items: [
         "HTML5",
         "CSS3",
         "JavaScript",
         "React.js",
         "Tailwind CSS",
-        "Responsive Design",
+        t.skills.items.responsiveDesign,
         "Vite",
       ],
     },
     {
-      title: "Backend Development",
+      title: t.skills.groups[1],
       items: [
         "Node.js",
         "Express.js",
         "Laravel",
         "PHP",
         "REST API",
-        "Application Logic",
-        "Authentication",
+        t.skills.items.applicationLogic,
+        t.skills.items.authentication,
       ],
     },
     {
-      title: "Database Management",
+      title: t.skills.groups[2],
       items: [
         "MySQL",
         "PostgreSQL",
-        "Database Design",
-        "SQL Queries",
-        "Data Modeling",
-        "CRUD Operations",
+        t.skills.items.databaseDesign,
+        t.skills.items.sqlQueries,
+        t.skills.items.dataModeling,
+        t.skills.items.crudOperations,
       ],
     },
     {
-      title: "Development Tools",
+      title: t.skills.groups[3],
       items: [
         "Git",
         "GitHub",
@@ -49,13 +52,13 @@ function Skills() {
       ],
     },
     {
-      title: "Additional Technologies",
+      title: t.skills.groups[4],
       items: [
         "Python",
         "Flutter",
         "Firebase",
-        "AI-Assisted Development",
-        "Web Deployment",
+        t.skills.items.aiDevelopment,
+        t.skills.items.webDeployment,
       ],
     },
   ];
@@ -64,17 +67,11 @@ function Skills() {
     <section id="skills" className="section-shell">
       <div className="section-inner">
         <div className="section-head">
-          <span className="section-kicker">● Skills</span>
+          <span className="section-kicker">{t.skills.kicker}</span>
 
-          <h2 className="section-title">
-            Technologies & Expertise
-          </h2>
+          <h2 className="section-title">{t.skills.title}</h2>
 
-          <p className="lead-copy">
-            My technical toolkit for designing, developing,
-            and maintaining web applications, working with
-            databases, and building practical digital solutions.
-          </p>
+          <p className="lead-copy">{t.skills.description}</p>
         </div>
 
         <div className="skills-grid">
